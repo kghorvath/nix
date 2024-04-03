@@ -12,8 +12,14 @@
 
   #Use the systemd-boot boot loader
   boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.cleanTmpDir = true;
 
-  #Networking
+  # Hardware
+  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  hardware.bluetooth.enable = true;
+
+  # Networking
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
 
@@ -35,7 +41,7 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # Open ports in the firewall.
+
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
 
@@ -54,11 +60,12 @@
   # services.xserver.libinput.enable = true;
 
   # Enable GNOME
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome3.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome3.enable = true;
   
   # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -77,9 +84,9 @@
   system.stateVersion = "23.11"; # Did you read the comment?
 
 
-  #Virtualization Guest Specific Options
-  services.xserver.videoDrivers = [ "qxl" ];
-  services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true; 
+  # Virtualization Guest Specific Options
+  # services.xserver.videoDrivers = [ "qxl" ];
+  # services.qemuGuest.enable = true;
+  # services.spice-vdagentd.enable = true; 
 }
 
