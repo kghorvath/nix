@@ -1,92 +1,111 @@
 # Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      <nixos-hardware/microsoft/surface/surface-pro-intel>
       ./hardware-configuration.nix
     ];
 
-  #Use the systemd-boot boot loader
+  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.cleanTmpDir = true;
+  boot.loader.efi.efiSysMountPoint="/boot/efi";
 
-  # Hardware
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
-  hardware.bluetooth.enable = true;
-
-  # Networking
-  networking.hostName = "nixos"; # Define your hostname.
+  # Set up networking
+  networking.hostName = "hokie";
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
+  #Time zone
   time.timeZone = "America/New_York";
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-   environment.systemPackages = with pkgs; [
-     git wget vim firefox emacs
-   ];
+  # Enable the X11 windowing system.
+  services.xserver = {
+    enable = true;
 
-  # Enable unfree packages
-  nixpkgs.config.allowUnfree = true;
+    # Enable GNOME
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
 
-  # List services that you want to enable:
-  services.flatpak.enable = true;
+    # Enable KDE
+    # displayManager.sddm.wayland.enable = true;
+    # desktopManager.plasma6.enable = true;
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
-
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+    xkb.layout = "us";
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "us";
-
-  # Enable touchpad support.
-  # services.xserver.libinput.enable = true;
-
-  # Enable GNOME
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome3.enable = true;
-  
-  # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
+  hardware.pulseaudio.enable = false;
+  services.pipewire = {
+  	enable = true;
+  	pulse.enable = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.khorvath = {
-     isNormalUser = true;
-     description = "Kamin Horvath";
-     extraGroups = [ "wheel networkmanager libvirt" ];
-   };
+  users.users.khorvath= {
+    isNormalUser = true;
+    description = "Kamin Horvath";
+    extraGroups = [ "wheel" "networkmanager" "libvirt" ];
+    packages = with pkgs; [
+      firefox libreoffice neofetch openttd thunderbird wezterm
+      ]; 
+  };
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  # System packages
+  environment.systemPackages = with pkgs; [
+    vim wget emacs virt-manager stow git podman-tui docker-compose distrobox
+    ];
 
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
-  # Virtualization Guest Specific Options
-  # services.xserver.videoDrivers = [ "qxl" ];
-  # services.qemuGuest.enable = true;
-  # services.spice-vdagentd.enable = true; 
+  # Enabled services
+  services = {
+    libinput.enable = true;
+    openssh.enable = true;
+    thermald = {
+      enable = true;
+      configFile = ./conf.d/thermal-conf.xml;
+    };
+  };
+
+  # Virtualization support
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+      ovmf = {
+        enable = true;
+        packages = [(pkgs.OVMF.override {
+          secureBoot = true;
+          tpmSupport = true;
+        }).fd];
+      };
+    };
+  };
+
+  # Container support
+  virtualisation.containers.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
+  
+  system.stateVersion = "24.05";
 }
 
