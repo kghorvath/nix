@@ -38,30 +38,46 @@
     xkb.layout = "us";
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+  # Hyprland
+  programs.hyprland.enable = true;
 
-  # Enable sound.
+  # Enable polkit
+  security.polkit.enable = true;
+
+   # Enable sound.
   hardware.pulseaudio.enable = false;
   services.pipewire = {
   	enable = true;
   	pulse.enable = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # User accounts
   users.users.khorvath= {
     isNormalUser = true;
     description = "Kamin Horvath";
-    extraGroups = [ "wheel" "networkmanager" "libvirt" ];
+    extraGroups = [ "wheel" "networkmanager" "libvirt" "kvm" ];
     packages = with pkgs; [
-      firefox libreoffice neofetch openttd thunderbird wezterm
+      firefox libreoffice neofetch openttd thunderbird wezterm webcord slurp hyprshot
       ]; 
   };
 
   # System packages
   environment.systemPackages = with pkgs; [
-    vim wget emacs virt-manager stow git podman-tui docker-compose distrobox
+    vim wget emacs29-pgtk virt-manager stow git podman-tui docker-compose distrobox kitty waybar wofi hyprlock hypridle hyprpaper lxqt.lxqt-policykit
     ];
+
+  # Font packages
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -75,6 +91,7 @@
   services = {
     libinput.enable = true;
     openssh.enable = true;
+    printing.enable = true;
     thermald = {
       enable = true;
       configFile = ./conf.d/thermal-conf.xml;
