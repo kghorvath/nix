@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 { config, lib, pkgs, ... }:
 
 {
@@ -13,6 +9,9 @@
       ./shell.nix
     ];
 
+  # Enable Flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.consoleMode = "max";
@@ -23,8 +22,11 @@
   networking.hostName = "hokie";
   networking.networkmanager.enable = true;
 
-  #Time zone
+  # Time zone
   time.timeZone = "America/New_York";
+
+  # Set environment variables
+  environment.variables.EDITOR = "emacs";
 
   # User accounts
   users.users.khorvath= {
@@ -65,7 +67,13 @@
   # Enabled services
   services = {
     libinput.enable = true;
-    openssh.enable = true;
+    openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+	};
+    };
     printing.enable = true;
     thermald = {
       enable = true;
