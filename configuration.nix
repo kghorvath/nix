@@ -8,11 +8,14 @@
   imports =
     [
       <nixos-hardware/microsoft/surface/surface-pro-intel>
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
+      ./desktop.nix
+      ./shell.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.consoleMode = "max";
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint="/boot/efi";
 
@@ -23,48 +26,20 @@
   #Time zone
   time.timeZone = "America/New_York";
 
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-
-    # Enable GNOME
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-
-    # Enable KDE
-    # displayManager.sddm.wayland.enable = true;
-    # desktopManager.plasma6.enable = true;
-
-    xkb.layout = "us";
-  };
-
-  # Hyprland
-  programs.hyprland.enable = true;
-
-  # Enable polkit
-  security.polkit.enable = true;
-
-   # Enable sound.
-  hardware.pulseaudio.enable = false;
-  services.pipewire = {
-  	enable = true;
-  	pulse.enable = true;
-  };
-
   # User accounts
   users.users.khorvath= {
     isNormalUser = true;
     description = "Kamin Horvath";
-    extraGroups = [ "wheel" "networkmanager" "libvirt" "kvm" ];
+    shell = pkgs.fish;
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" "kvm" ];
     packages = with pkgs; [
-      firefox libreoffice neofetch openttd thunderbird wezterm webcord slurp hyprshot
+      wezterm webcord _86Box xournalpp calibre pinta dosbox-x
       ]; 
   };
 
   # System packages
   environment.systemPackages = with pkgs; [
-    vim wget emacs29-pgtk virt-manager stow git podman-tui docker-compose distrobox kitty waybar wofi hyprlock hypridle hyprpaper lxqt.lxqt-policykit
-    ];
+    vim wget emacs29-pgtk virt-manager stow firefox thunderbird libreoffice nextcloud-client neofetch git podman-tui remmina docker-compose distrobox kitty waybar wofi hyprlock hypridle hyprpaper hyprshot lxqt.lxqt-policykit progress brightnessctl    ];
 
   # Font packages
   fonts.packages = with pkgs; [
