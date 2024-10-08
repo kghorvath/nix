@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
   home.username = "khorvath";
@@ -14,7 +14,6 @@
     wget
 
     # Terminal emulators
-    wezterm
 
     # Productivity
     hugo
@@ -54,7 +53,11 @@
     userEmail = "kamin@kghorvath.com";
   };
 
-  programs.fish.enable = true;
+  programs.wezterm = {
+    enable = true;
+    package = inputs.wezterm.packages.${pkgs.system}.default;
+    extraConfig = builtins.readFile ./dotfiles/wezterm/wezterm.lua;
+  };
 
   # Enable home manager itself
   programs.home-manager.enable = true;
