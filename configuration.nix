@@ -5,7 +5,6 @@
     [
       ./hardware-configuration.nix
       ./desktop.nix
-      ./shell.nix
     ];
 
   # Enable Flakes
@@ -25,7 +24,7 @@
   time.timeZone = "America/New_York";
 
   # Set environment variables
-  environment.variables.EDITOR = "emacs";
+  environment.variables.EDITOR = "vim";
 
   # User accounts
   users.users.khorvath= {
@@ -33,14 +32,12 @@
     description = "Kamin Horvath";
     shell = pkgs.fish;
     extraGroups = [ "wheel" "networkmanager" "libvirtd" "kvm" ];
-    packages = with pkgs; [
-      wezterm webcord _86Box xournalpp calibre pinta dosbox-x
-      ]; 
+    packages = with pkgs; [   ]; 
   };
 
   # System packages
   environment.systemPackages = with pkgs; [
-    vim wget emacs29-pgtk virt-manager stow firefox thunderbird libreoffice nextcloud-client neofetch git podman-tui remmina docker-compose distrobox kitty waybar wofi hyprlock hypridle hyprpaper hyprshot lxqt.lxqt-policykit progress brightnessctl    ];
+    vim virt-manager podman-tui docker-compose distrobox kitty waybar wofi hyprlock hypridle hyprpaper hyprshot lxqt.lxqt-policykit progress brightnessctl    ];
 
   # Font packages
   fonts.packages = with pkgs; [
