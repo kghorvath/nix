@@ -3,8 +3,7 @@
 {
   imports =
     [
-      <nixos-hardware/microsoft/surface/surface-pro-intel>
-      /etc/nixos/hardware-configuration.nix
+      ./hardware-configuration.nix
       ./desktop.nix
       ./shell.nix
     ];
