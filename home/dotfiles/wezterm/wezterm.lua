@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 local config = {}
 
-config.enable_wayland = false
+config.enable_wayland = true 
 config.color_scheme = 'Abernathy'
 config.enable_tab_bar = false
 config.font = wezterm.font 'Cascadia Code'

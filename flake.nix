@@ -3,10 +3,10 @@
 
   nixConfig = {
     extra-substituters = [
-      "https://wezterm.cachix.org"
+	"https://wezterm.cachix.org"
     ];
     extra-trusted-public-keys = [
-      "wezterm.cachix.org-1:kAbhjYUC9qvblTE+s7S+kl5XM1zVa4skO+E/1IDWdH0="
+	"wezterm.cachix.org-1:kAbhjYUC9qvblTE+s7S+kl5XM1zVa4skO+E/1IDWdH0="
     ];
   };
 
@@ -30,17 +30,17 @@
         # Import the previous configuration.nix we used,
         # so the old configuration file still takes effect
         ./configuration.nix
-
+	
 	# Import home-manager
 	home-manager.nixosModules.home-manager
 	{  
 	  home-manager.useGlobalPkgs = true;
 	  home-manager.useUserPackages = true;
 	  home-manager.backupFileExtension = "bak";
-	  home-manager.users.khorvath = import ./home.nix;
+	  home-manager.users.khorvath = import ./home/home.nix;
 	  home-manager.extraSpecialArgs = { inherit inputs; };
 	}
-	  
+
 	# Add surface hardware support
 	nixos-hardware.nixosModules.microsoft-surface-pro-intel
       ];

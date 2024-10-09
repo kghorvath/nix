@@ -5,17 +5,32 @@
     [
       ./hardware-configuration.nix
       ./desktop.nix
-    ];
+     ];
 
   # Enable Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.consoleMode = "max";
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint="/boot/efi";
-
+  boot.loader = {
+    ## Use the systemd-boot EFI boot loader.
+    # systemd-boot = {
+      # enable = true;
+      # consoleMode = "max";
+    # };
+    
+    # Use the GRUB boot loader
+    grub = {
+      efiSupport = true;
+      useOSProber = false;
+      device = "nodev";
+    };
+    
+    # EFI settings
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint="/boot/efi";
+    };
+  };
+  
   # Set up networking
   networking.hostName = "hokie";
   networking.networkmanager.enable = true;
@@ -37,7 +52,7 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
-    vim virt-manager podman-tui docker-compose distrobox kitty waybar wofi hyprlock hypridle hyprpaper hyprshot lxqt.lxqt-policykit progress brightnessctl    ];
+    vim virt-manager podman-tui docker-compose kitty waybar wofi hyprlock hypridle hyprpaper hyprshot lxqt.lxqt-policykit brightnessctl    ];
 
   # Font packages
   fonts.packages = with pkgs; [
