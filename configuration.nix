@@ -52,10 +52,11 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
-    vim virt-manager podman-tui docker-compose kitty waybar wofi hyprlock hypridle hyprpaper hyprshot lxqt.lxqt-policykit brightnessctl    ];
+    vim virt-manager podman-tui docker-compose kitty waybar wofi hyprlock hypridle hyprpaper hyprshot lxqt.lxqt-policykit brightnessctl swaynotificationcenter   ];
 
   # Font packages
   fonts.packages = with pkgs; [
+    cascadia-code
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji

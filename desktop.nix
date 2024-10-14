@@ -5,16 +5,16 @@
 
     # Enable GNOME
     displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    # desktopManager.gnome.enable = true;
 
     # Enable KDE
     # displayManager.sddm.wayland.enable = true;
-    # desktopManager.plasma6.enable = true;
+    desktopManager.plasma6.enable = true;
 
     xkb.layout = "us";
   };
 
-  # Hyprland
+    # Hyprland
   programs.hyprland.enable = true;
 
   # Enable polkit

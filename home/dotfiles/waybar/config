@@ -1,0 +1,82 @@
+{
+	"layer": "top",
+	"position": "top",
+	"height": 30,
+	"spacing": 4,
+	"modules-left": ["sway/workspaces", "tray"],
+	"modules-center": ["sway/window"],
+	"modules-right": ["backlight", "pulseaudio", "battery", "clock", "custom/keyboard", "idle_inhibitor"],
+
+	//Modules
+
+	"custom/keyboard": {
+        "format": "",
+	"on-click": "exec ~/.local/bin/wvkbd.sh",
+	"tooltip": false
+    	},
+
+	"idle_inhibitor": {
+        		  "format": "{icon}",
+        		  "format-icons": {
+            		  "activated": "",
+            		  "deactivated": ""
+        		  } 
+    	},
+
+	"tray": {
+		"spacing": 10
+	},
+
+	"clock": {
+		 "format": " {:%a %b %d %I:%M %p}",
+		 "tooltip-format": "<span color='#35b9ab'><big>{:%Y %B}</big></span>\n<span color='#35b9ab'><tt><small>{calendar}</small></tt></span>",
+		 "interval": 10
+	},
+
+	"backlight": {
+        	     "device": "acpi_video1",
+        	     "format": "{percent}% {icon}",
+        	     "format-icons": [""]
+    	},
+
+	"pulseaudio": {
+        	      "format": "{volume}% {icon}",
+        	      "format-alt": "C{icon}",
+        	      "format-alt-click": "click-right",
+        	      "format-muted": "🔇",
+        	      "format-icons": {
+            	      		      "headphones": "",
+            			      "handsfree": "",
+            			      "headset": "",
+            			      "phone": "",
+            			      "portable": "",
+            			      "car": "",
+            			      "default": ["", "", ""]
+        	      },
+        	      "scroll-step": 10,
+        	      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        	      "on-click-right": "pavucontrol",
+        	      "tooltip": false
+    	},
+
+	"battery": {
+        	   "states": {
+            	   	     "good": 95,
+            		     "warning": 30,
+            		     "critical": 15
+        	   },
+        	   "format": "{capacity}% {icon}",
+        	   "format-charging": "{capacity}% ",
+        	   "format-plugged": "",
+        	   "format-alt": "{capacity}% {time}",
+        	   "format-icons": ["", "", "", "", ""]
+        },
+
+	"network": {
+		   "format-wifi": " {essid}",
+ 		   "format-ethernet": "🖧",
+        	   "format-linked": "",
+        	   "format-disconnected": "⚠",
+        	   "format-alt": "{ifname} {essid} ({signalStrength}%)"
+	},
+}
