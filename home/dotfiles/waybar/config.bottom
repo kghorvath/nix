@@ -1,0 +1,49 @@
+{
+    "layer": "bottom",
+    "position": "bottom",
+    "height": 30,
+    "spacing": 4,
+    "modules-left": ["custom/hostname"],
+    "modules-center": ["custom/realname"],
+    "modules-right": ["network", "cpu", "memory", "disk", "temperature"],
+
+    "cpu": {
+	"format": " {}%"
+    },
+
+    "disk": {
+	"format": " {percentage_used}%"
+    },
+    
+    "memory": {
+	"format": " {percentage}%"
+    },
+    "network": {
+	"interface": "wlp0s20f3",
+	"interval": 2,
+	"format": " {bandwidthUpBytes}  {bandwidthDownBytes}"
+    },
+    
+    "temperature": {
+	"thermal-zone": 0,
+	"format": " {temperatureF}°F"
+    },
+    
+    "user": {
+	"format": " {user}"
+    },
+
+    "custom/hostname": {
+	"format": " {}",
+	"interval": "once",
+	"exec": "hostname -f"
+    },
+    "custom/realname": {
+	"format": " {}",
+	"interval": "once",
+	"exec": "getent passwd $USER | cut -d : -f 5"
+    }
+    
+}
+
+    

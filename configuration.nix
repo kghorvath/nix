@@ -33,6 +33,7 @@
   
   # Set up networking
   networking.hostName = "hokie";
+  networking.domain = "lan.kghorvath.com";
   networking.networkmanager.enable = true;
 
   # Time zone
@@ -93,11 +94,13 @@
       enable = true;
       configFile = ./conf.d/thermal-conf.xml;
     };
+    gnome.gnome-keyring.enable=true;
   };
 
   # Virtualization support
   virtualisation.libvirtd = {
     enable = true;
+    onBoot = "start";
     qemu = {
       package = pkgs.qemu_kvm;
       runAsRoot = true;

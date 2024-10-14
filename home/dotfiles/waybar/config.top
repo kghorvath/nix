@@ -15,7 +15,9 @@
             		  "deactivated": ""
         		  } 
     	},
-
+        "hyprland/window": {
+	         "format": " {}",
+	},
 	"tray": {
 		"spacing": 10
 	},
