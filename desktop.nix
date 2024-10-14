@@ -7,11 +7,12 @@
     displayManager.gdm.enable = true;
     # desktopManager.gnome.enable = true;
 
+    xkb.layout = "us";
+  };
+  services.desktopManager = {
     # Enable KDE
     # displayManager.sddm.wayland.enable = true;
-    desktopManager.plasma6.enable = true;
-
-    xkb.layout = "us";
+    # plasma6.enable = true;
   };
 
     # Hyprland
