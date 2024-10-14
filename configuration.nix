@@ -63,9 +63,12 @@
     liberation_ttf
     fira-code
     fira-code-symbols
+    font-awesome
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
+    powerline-fonts
+    powerline-symbols
   ];
 
   programs.mtr.enable = true;
