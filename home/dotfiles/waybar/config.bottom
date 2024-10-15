@@ -1,9 +1,10 @@
 {
+    "name": "bottom",
     "layer": "bottom",
     "position": "bottom",
     "height": 30,
     "spacing": 4,
-    "modules-left": ["custom/terminal", "custom/editor", "custom/browser", "custom/email", "custom/file"],
+    "modules-left": ["custom/icon1", "custom/icon2", "custom/icon3", "custom/icon4", "custom/icon5"],
     "modules-center": ["custom/realname"],
     "modules-right": ["network", "cpu", "memory", "disk", "temperature"],
 
@@ -44,27 +45,27 @@
 	"exec": "getent passwd $USER | cut -d : -f 5"
     },
 
-     "custom/terminal": {
+     "custom/icon1": {
 	"format": "",
 	"tooltip": "Terminal",
 	"on-click": "wezterm"
      },
-    "custom/editor": {
+    "custom/icon2": {
 	"format": "",
 	"tooltip": "Emacs",
 	"on-click": "emacs"
     },
-    "custom/browser": {
+    "custom/icon3": {
 	"format": "",
 	"tooltip": "Firefox",
 	"on-click": "firefox"
     },
-    "custom/email": {
+    "custom/icon4": {
 	"format": "",
 	"tooltip": "Thunderbird",
 	"on-click": "thunderbird"
     },
-    "custom/file": {
+    "custom/icon5": {
 	"format": "",
 	"tooltip": "File Browser",
 	"on-click": "thunar"

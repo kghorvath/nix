@@ -75,3 +75,19 @@ window#waybar.solo {
     color: rgba(217, 216, 216, 1);
 }
 
+#custom-icon1,
+#custom-icon2,
+#custom-icon3,
+#custom-icon4,
+#custom-icon5 {
+    padding: 0 5px;
+}
+
+#custom-icon1:hover,
+#custom-icon2:hover,
+#custom-icon3:hover,
+#custom-icon4:hover,
+#custom-icon5:hover {
+    color: rgba(255,255,255,0.9);
+    background-color: rgba(255,255,255,0.1);
+}
