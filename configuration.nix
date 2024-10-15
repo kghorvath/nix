@@ -89,6 +89,10 @@
         PasswordAuthentication = false;
 	};
     };
+    tailscale = {
+      enable = true;
+      useRoutingFeatures = "client";
+    };
     printing.enable = true;
     thermald = {
       enable = true;
@@ -96,6 +100,9 @@
     };
     gnome.gnome-keyring.enable=true;
   };
+
+  # Security
+  security.pam.services.hyprlock = {};
 
   # Virtualization support
   virtualisation.libvirtd = {

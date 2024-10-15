@@ -9,11 +9,19 @@
   home.username = "khorvath";
   home.homeDirectory = "/home/khorvath";
 
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 22;
+  };
+
   home.packages = with pkgs; [
 
     # CLI tools
     bchunk
     cdrkit
+    fortune
     htop
     ipmitool
     jq
@@ -68,6 +76,7 @@
 
     # Utilities
     distrobox
+    xfce.thunar
 
   ];
 
