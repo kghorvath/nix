@@ -20,6 +20,7 @@
 
     # CLI tools
     bchunk
+    brightnessctl
     cdrkit
     fortune
     htop

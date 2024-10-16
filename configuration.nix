@@ -30,7 +30,15 @@
       efiSysMountPoint="/boot/efi";
     };
   };
-  
+
+  # Set up hardware
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+  };
+    
   # Set up networking
   networking.hostName = "hokie";
   networking.domain = "lan.kghorvath.com";
@@ -53,7 +61,7 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
-    vim virt-manager podman-tui docker-compose kitty waybar wofi hyprlock hypridle hyprpaper hyprshot lxqt.lxqt-policykit brightnessctl swaynotificationcenter   ];
+    vim virt-manager podman-tui docker-compose kitty waybar wofi hyprlock hypridle hyprpaper hyprshot lxqt.lxqt-policykit swaynotificationcenter ];
 
   # Font packages
   fonts.packages = with pkgs; [
@@ -81,6 +89,7 @@
 
   # Enabled services
   services = {
+    blueman.enable = true;
     libinput.enable = true;
     openssh = {
       enable = true;
