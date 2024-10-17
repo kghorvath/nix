@@ -76,6 +76,7 @@
     vlc
 
     # Utilities
+    alacarte
     distrobox
     xfce.thunar
 

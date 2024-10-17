@@ -5,7 +5,7 @@
     "height": 30,
     "spacing": 4,
     "modules-left": ["custom/icon1", "custom/icon2", "custom/icon3", "custom/icon4", "custom/icon5"],
-    "modules-center": ["custom/realname"],
+    "modules-center": ["custom/ident"],
     "modules-right": ["network", "cpu", "memory", "disk", "temperature"],
 
     "cpu": {
@@ -44,7 +44,11 @@
 	"interval": "once",
 	"exec": "getent passwd $USER | cut -d : -f 5"
     },
-
+    "custom/ident": {
+	"format": " {}",
+	"interval": "once",
+	"exec": "echo $(whoami)@$(hostname -f)"
+    },
      "custom/icon1": {
 	"format": "",
 	"tooltip": "Terminal",
