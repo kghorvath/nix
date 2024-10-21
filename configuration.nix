@@ -61,7 +61,7 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
-    vim virt-manager podman-tui docker-compose kitty waybar wofi hyprlock hypridle hyprpaper hyprshot lxqt.lxqt-policykit swaynotificationcenter brlaser ];
+    vim virt-manager podman-tui docker-compose kitty waybar wofi hyprlock hypridle hyprpaper hyprshot lxqt.lxqt-policykit swaynotificationcenter ];
 
   # Font packages
   fonts.packages = with pkgs; [
@@ -89,6 +89,11 @@
 
   # Enabled services
   services = {
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };	  
     blueman.enable = true;
     libinput.enable = true;
     openssh = {
@@ -102,7 +107,10 @@
       enable = true;
       useRoutingFeatures = "client";
     };
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = [ pkgs.brlaser ];
+    };
     thermald = {
       enable = true;
       configFile = ./conf.d/thermal-conf.xml;
