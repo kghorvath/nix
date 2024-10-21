@@ -70,14 +70,17 @@
 
     # Media
     calibre
+    ffmpeg-full
     gimp-with-plugins
     krita
+    libcamera-qcam
     pinta
     vlc
 
     # Utilities
     alacarte
     distrobox
+    jdk
     xfce.thunar
 
   ];
