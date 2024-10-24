@@ -61,7 +61,7 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
-    vim virt-manager podman-tui docker-compose kitty waybar wofi hyprlock hypridle hyprpaper hyprshot lxqt.lxqt-policykit swaynotificationcenter ];
+    vim podman-tui docker-compose lxqt.lxqt-policykit ];
 
   # Font packages
   fonts.packages = with pkgs; [

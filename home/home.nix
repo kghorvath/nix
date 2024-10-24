@@ -82,6 +82,18 @@
     distrobox
     jdk
     xfce.thunar
+    virt-manager
+
+    # Hyprland
+    hypridle
+    hyprlock
+    hyprpaper
+    hyprpicker
+    hyprshot
+    kitty
+    waybar
+    wofi
+    swaynotificationcenter
 
   ];
 
@@ -149,10 +161,6 @@
   services.hyprpaper = {
     enable = true;
   };
-  programs.yambar = {
-    enable = true;
-  };
-
   xdg.configFile."hypr/hypridle.conf".source = ./dotfiles/hyprland/hypridle.conf;
   xdg.configFile."hypr/hyprpaper.conf".source = ./dotfiles/hyprland/hyprpaper.conf;
   xdg.configFile."hypr/hyprlock.conf".source = ./dotfiles/hyprland/hyprlock.conf;
