@@ -1,13 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, inputs, pkgs, ... }:
 
 {
   imports =
     [
       ./hardware-configuration.nix
-      ./desktop.nix
-     ];
-
-  # Enable Flakes
+      ];
+     
+   # Enable Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot.loader = {
@@ -38,6 +37,9 @@
       powerOnBoot = true;
     };
   };
+
+  # Enable zram
+  zramSwap.enable = true;
     
   # Set up networking
   networking.hostName = "hokie";
@@ -51,17 +53,19 @@
   environment.variables.EDITOR = "vim";
 
   # User accounts
-  users.users.khorvath= {
-    isNormalUser = true;
-    description = "Kamin Horvath";
-    shell = pkgs.fish;
-    extraGroups = [ "wheel" "networkmanager" "libvirtd" "kvm" ];
-    packages = with pkgs; [   ]; 
+  users = {
+    mutableUsers = true;
+    users.khorvath= {
+      isNormalUser = true;
+      description = "Kamin Horvath";
+      shell = pkgs.fish;
+      extraGroups = [ "wheel" "networkmanager" "libvirtd" "kvm" "vboxusers" ];
+      packages = with pkgs; [   ]; 
+    };
   };
 
   # System packages
-  environment.systemPackages = with pkgs; [
-    vim podman-tui docker-compose lxqt.lxqt-policykit ];
+  environment.systemPackages = with pkgs; [ vim nfs-utils lxqt.lxqt-policykit ];
 
   # Font packages
   fonts.packages = with pkgs; [
@@ -111,6 +115,8 @@
       enable = true;
       drivers = [ pkgs.brlaser ];
     };
+    nfs.server.enable = true;
+    rpcbind.enable = true;
     thermald = {
       enable = true;
       configFile = ./conf.d/thermal-conf.xml;
@@ -119,34 +125,44 @@
   };
 
   # Security
-  security.pam.services.hyprlock = {};
-
-  # Virtualization support
-  virtualisation.libvirtd = {
-    enable = true;
-    onBoot = "start";
-    qemu = {
-      package = pkgs.qemu_kvm;
-      runAsRoot = true;
-      swtpm.enable = true;
-      ovmf = {
-        enable = true;
-        packages = [(pkgs.OVMF.override {
-          secureBoot = true;
-          tpmSupport = true;
-        }).fd];
-      };
+  security = {
+    pam.services.hyprlock = {};
+    sudo = {
+      execWheelOnly = true;
+      wheelNeedsPassword = true;
     };
   };
 
-  # Container support
-  virtualisation.containers.enable = true;
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings.dns_enabled = true;
-  };
-  
+   # Enable polkit
+  security.polkit.enable = true;
+
+  # Virtualization support
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+      onBoot = "start";
+      qemu = {
+        package = pkgs.qemu_kvm;
+        runAsRoot = true;
+        swtpm.enable = true;
+        ovmf = {
+          enable = true;
+          packages = [(pkgs.OVMF.override {
+            secureBoot = true;
+            tpmSupport = true;
+          }).fd];
+        };
+      };
+    };
+
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+ };
+ 
   system.stateVersion = "24.05";
 }
 

@@ -1,9 +1,17 @@
 { config, inputs, pkgs, ... }:
 
+let
+
+  unstable = import inputs.nixpkgs-unstable {
+    system = pkgs.system;
+  };
+
+in
+
 {
 
   imports = [
-
+    ./programs/wezterm.nix
   ];
   
   home.username = "khorvath";
@@ -27,9 +35,11 @@
     ipmitool
     jq
     neofetch
+    podman-tui
     progress
     stow
     wget
+    xmlstarlet
 
     # Python
     (python3.withPackages
@@ -83,7 +93,7 @@
     jdk
     xfce.thunar
     virt-manager
-
+    
     # Hyprland
     hypridle
     hyprlock
@@ -94,10 +104,10 @@
     waybar
     wofi
     swaynotificationcenter
+    inputs.swww.packages.${pkgs.system}.swww
 
   ];
 
-  # Programs
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-bin;
@@ -144,22 +154,21 @@
     userEmail = "kamin@kghorvath.com";
   };
 
-  programs.wezterm = {
-    enable = true;
-    package = inputs.wezterm.packages.${pkgs.system}.default;
-    extraConfig = builtins.readFile ./dotfiles/wezterm/wezterm.lua;
-  };
-
   # Hyprland config
   wayland.windowManager.hyprland = {
     enable = true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     extraConfig = builtins.readFile ./dotfiles/hyprland/hyprland.conf;
+    plugins = [
+      #pkgs.hyprlandPlugins.hyprwinwrap
+      inputs.hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
+    ];  
   };
   services.hypridle = {
     enable = true;
   };
   services.hyprpaper = {
-    enable = true;
+    enable = false;
   };
   xdg.configFile."hypr/hypridle.conf".source = ./dotfiles/hyprland/hypridle.conf;
   xdg.configFile."hypr/hyprpaper.conf".source = ./dotfiles/hyprland/hyprpaper.conf;
