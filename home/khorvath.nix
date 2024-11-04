@@ -95,8 +95,8 @@ in
     virt-manager
     
     # Hyprland
-    hypridle
-    hyprlock
+    inputs.hypridle.packages.${pkgs.system}.hypridle
+    inputs.hyprlock.packages.${pkgs.system}.hyprlock
     hyprpaper
     hyprpicker
     hyprshot

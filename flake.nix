@@ -25,7 +25,9 @@
     };
 
     # Other programs
-    hyprland.url = "github:hyprwm/Hyprland";  
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprlock.url = "github:hyprwm/hyprlock";
+    hypridle.url = "github:hyprwm/hypridle";
     swww.url = "github:LGFae/swww";  
     wezterm.url = "github:wez/wezterm?dir=nix";
 
