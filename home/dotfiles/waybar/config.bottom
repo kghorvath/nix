@@ -1,0 +1,81 @@
+{
+    "name": "bottom",
+    "layer": "bottom",
+    "position": "bottom",
+    "height": 30,
+    "spacing": 4,
+    "modules-left": ["custom/icon1", "custom/icon2", "custom/icon3", "custom/icon4", "custom/icon5"],
+    "modules-center": ["custom/ident"],
+    "modules-right": ["network", "cpu", "memory", "disk", "temperature"],
+
+    "cpu": {
+	"format": " {}%"
+    },
+
+    "disk": {
+	"format": " {percentage_used}%"
+    },
+    
+    "memory": {
+	"format": " {percentage}%"
+    },
+    "network": {
+	"interface": "wlp0s20f3",
+	"interval": 2,
+	"format": " {bandwidthUpBytes}  {bandwidthDownBytes}"
+    },
+    
+    "temperature": {
+	"thermal-zone": 0,
+	"format": " {temperatureF}°F"
+    },
+    
+    "user": {
+	"format": " {user}"
+    },
+
+    "custom/hostname": {
+	"format": " {}",
+	"interval": "once",
+	"exec": "hostname -f"
+    },
+    "custom/realname": {
+	"format": " {}",
+	"interval": "once",
+	"exec": "getent passwd $USER | cut -d : -f 5"
+    },
+    "custom/ident": {
+	"format": " {}",
+	"interval": "once",
+	"exec": "echo $(whoami)@$(hostname -f)"
+    },
+     "custom/icon1": {
+	"format": "",
+	"tooltip": "Terminal",
+	"on-click": "wezterm"
+     },
+    "custom/icon2": {
+	"format": "",
+	"tooltip": "Emacs",
+	"on-click": "emacs"
+    },
+    "custom/icon3": {
+	"format": "",
+	"tooltip": "Firefox",
+	"on-click": "firefox"
+    },
+    "custom/icon4": {
+	"format": "",
+	"tooltip": "Thunderbird",
+	"on-click": "thunderbird"
+    },
+    "custom/icon5": {
+	"format": "",
+	"tooltip": "File Browser",
+	"on-click": "thunar"
+    },
+
+    
+}
+
+    

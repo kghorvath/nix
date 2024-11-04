@@ -1,0 +1,74 @@
+{
+	"layer": "top",
+	"position": "top",
+	"height": 30,
+	"spacing": 4,
+	"modules-left": ["hyprland/workspaces", "tray"],
+	"modules-center": ["hyprland/window"],
+	"modules-right": ["pulseaudio", "network", "battery", "clock", "idle_inhibitor"],
+
+	//Modules
+	"idle_inhibitor": {
+        		  "format": "{icon}",
+        		  "format-icons": {
+            		  "activated": "",
+            		  "deactivated": ""
+        		  } 
+    	},
+        "hyprland/window": {
+	         "format": " {}",
+	},
+	"tray": {
+		"spacing": 10
+	},
+
+	"clock": {
+		 "format": " {0:%a %b %d}   {0:%I:%M %p}",
+		 "tooltip-format": "<span color='#35b9ab'><big>{:%Y %B}</big></span>\n<span color='#35b9ab'><tt><small>{calendar}</small></tt></span>",
+		 "interval": 10
+	},
+
+	"backlight": {
+        	     "device": "acpi_video1",
+        	     "format": "{percent}% {icon}",
+        	     "format-icons": [""]
+    	},
+
+	"pulseaudio": {
+        	      "format": "{icon} {volume}%",
+        	      "format-muted": "",
+        	      "format-icons": {
+            	      		      "headphones": "",
+            			      "handsfree": "",
+            			      "headset": "",
+            			      "phone": "",
+            			      "portable": "",
+            			      "car": "",
+            			      "default": ["", "", ""]
+        	      },
+        	      "scroll-step": 10,
+        	      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        	      "on-click-right": "pavucontrol",
+        	      "tooltip": false
+    	},
+
+	"battery": {
+        	   "states": {
+            	   	     "good": 95,
+            		     "warning": 30,
+            		     "critical": 15
+        	   },
+        	   "format": "{icon} {capacity}%",
+        	   "format-charging": " {capacity}%",
+        	   "format-plugged": "",
+        	   "format-icons": ["", "", "", "", ""]
+        },
+
+	"network": {
+		   "format-wifi": " {essid}",
+ 		   "format-ethernet": "",
+        	   "format-linked": "",
+        	   "format-disconnected": "",
+        	   "format-alt": "{ifname} {essid} ({signalStrength}%)"
+	},
+}

@@ -1,0 +1,93 @@
+* {
+    border:        none;
+    border-radius: 0;
+    font-family:   "Noto Sans", "Font Awesome 6 Free Solid", sans-serif;
+    font-size:     14px;
+    box-shadow:    none;
+    text-shadow:   none;
+    transition-duration: 0s;
+}
+
+window#waybar {
+    color: rgba(255,255,255,0.7);
+    background-color: rgba(10,10,10,0.5);
+}
+
+window#waybar.solo {
+    color: rgba(255,255,255,0.7);
+}
+
+#workspaces {
+    margin: 0 5px;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: rgba(255,255,255,0.4);
+    min-width: 10px;
+}
+
+#workspaces button.active {
+    color: rgba(255,255,255,0.7);
+    border-bottom: 4px solid;
+}
+
+#workspaces button.visible {
+    color: rgba(255,255,255,0.7);
+}
+
+#workspaces button.urgent {
+    color: rgba(33, 164, 223, 1);
+}
+
+#workspaces button:hover {
+    color: rgba(255,255,255,0.9);
+    background-color: rgba(255,255,255,0.1);
+}
+
+#mode, 
+#battery, 
+#cpu, 
+#memory, 
+#network, 
+#pulseaudio, 
+#idle_inhibitor, 
+#temperature,
+#custom-layout,
+#backlight {
+    margin: 0px 6px 0px 10px;
+/*    min-width: 30px;*/
+}
+
+#clock {
+    margin: 0px 6px 0px 10px;
+}
+
+#battery.warning {
+   color: rgba(255, 210, 4, 1);
+}
+
+#battery.critical {
+    color: rgba(238, 46, 36, 1);
+}
+
+#battery.charging {
+    color: rgba(217, 216, 216, 1);
+}
+
+#custom-icon1,
+#custom-icon2,
+#custom-icon3,
+#custom-icon4,
+#custom-icon5 {
+    padding: 0 5px;
+}
+
+#custom-icon1:hover,
+#custom-icon2:hover,
+#custom-icon3:hover,
+#custom-icon4:hover,
+#custom-icon5:hover {
+    color: rgba(255,255,255,0.9);
+    background-color: rgba(255,255,255,0.1);
+}
