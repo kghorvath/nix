@@ -8,16 +8,15 @@ in {
   services.xserver = {
     enable = true;
 
-    # Display Manager
-    displayManager = {
-      #gdm.enable = true;
-      sddm.enable = true;
-    };
-
     # Desktop Managers
     desktopManager = {
       xfce.enable = true;
     };
+  };
+
+  # Display Managers
+  services.displayManager = {
+    sddm.enable = true;
   };
 
  # Enable Hyprland

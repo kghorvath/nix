@@ -28,6 +28,8 @@
     hyprland.url = "github:hyprwm/Hyprland";
     hyprlock.url = "github:hyprwm/hyprlock";
     hypridle.url = "github:hyprwm/hypridle";
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";  
+    nixgl.url = "github:nix-community/nixGL";  
     swww.url = "github:LGFae/swww";  
     wezterm.url = "github:wez/wezterm?dir=nix";
 
@@ -38,7 +40,7 @@
     };
   };
 
-    outputs = {self, nixpkgs, nixos-hardware, home-manager, hyprland, ... } @ inputs:
+    outputs = {self, nixpkgs, nixos-hardware, nixgl, home-manager, hyprland, hyprpanel, ... } @ inputs:
     let
       inherit (self) outputs;
     in {
@@ -47,8 +49,8 @@
 	 system = "x86_64-linux";
 	 specialArgs = {inherit inputs outputs;};
 	 modules = [
-	   ./nixos/configuration.nix
-	   ./desktop  
+	   ./nixos
+	   ./desktop
 	   nixos-hardware.nixosModules.microsoft-surface-pro-intel
 
 	   home-manager.nixosModules.home-manager {
@@ -58,6 +60,7 @@
 	       users.khorvath = import ./home/khorvath.nix;
 	       extraSpecialArgs = {inherit inputs outputs;};
 	     };
+	     nixpkgs.overlays = [ inputs.hyprpanel.overlay ];
 	   }
 	 ];
       };

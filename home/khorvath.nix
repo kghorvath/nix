@@ -54,6 +54,7 @@ in
     libreoffice
     octaveFull
     simple-scan
+    (texlive.combine { inherit (texlive) scheme-medium thaispec xstring; })
     xournalpp
 
     # Editors
@@ -66,6 +67,9 @@ in
     nextcloud-client
     thunderbird
     webcord
+    vivaldi
+    vivaldi-ffmpeg-codecs
+    widevine-cdm
 
     # Networking
     remmina
@@ -84,6 +88,7 @@ in
     gimp-with-plugins
     krita
     libcamera-qcam
+    obs-studio
     pinta
     vlc
 
@@ -91,19 +96,20 @@ in
     alacarte
     distrobox
     jdk
+    inputs.nixgl.packages.${pkgs.system}.nixGLIntel
     xfce.thunar
     virt-manager
     
     # Hyprland
     inputs.hypridle.packages.${pkgs.system}.hypridle
     inputs.hyprlock.packages.${pkgs.system}.hyprlock
+    hyprpanel
     hyprpaper
     hyprpicker
     hyprshot
     kitty
     waybar
     wofi
-    swaynotificationcenter
     inputs.swww.packages.${pkgs.system}.swww
 
   ];
