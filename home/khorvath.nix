@@ -55,6 +55,7 @@ in
     octaveFull
     simple-scan
     (texlive.combine { inherit (texlive) scheme-medium thaispec xstring; })
+    typst
     xournalpp
 
     # Editors
