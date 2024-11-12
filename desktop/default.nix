@@ -16,7 +16,11 @@ in {
 
   # Display Managers
   services.displayManager = {
-    sddm.enable = true;
+    sddm = {
+      enable = true;
+      enableHidpi = true;
+      #wayland.enable = true;
+    };
   };
 
  # Enable Hyprland

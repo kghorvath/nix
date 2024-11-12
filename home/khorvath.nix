@@ -168,7 +168,7 @@ in
     extraConfig = builtins.readFile ./dotfiles/hyprland/hyprland.conf;
     plugins = [
       #pkgs.hyprlandPlugins.hyprwinwrap
-      inputs.hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
+      #inputs.hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
     ];  
   };
   services.hypridle = {
