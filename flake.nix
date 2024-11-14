@@ -16,16 +16,19 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";  
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";  
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Other programs
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprlock.url = "github:hyprwm/hyprlock";
     hypridle.url = "github:hyprwm/hypridle";
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";  
@@ -51,7 +54,8 @@
 	 modules = [
 	   ./nixos
 	   ./desktop
-	   nixos-hardware.nixosModules.microsoft-surface-pro-intel
+	   (import ./overlays)
+	   #nixos-hardware.nixosModules.microsoft-surface-pro-intel
 
 	   home-manager.nixosModules.home-manager {
 	     home-manager = {

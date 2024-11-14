@@ -31,6 +31,7 @@ in
     brightnessctl
     cdrkit
     fortune
+    glxinfo
     htop
     ipmitool
     jq
@@ -38,6 +39,7 @@ in
     podman-tui
     progress
     stow
+    unzip
     wget
     xmlstarlet
 
@@ -96,6 +98,7 @@ in
     # Utilities
     alacarte
     distrobox
+    gnome.nautilus
     jdk
     inputs.nixgl.packages.${pkgs.system}.nixGLIntel
     xfce.thunar
