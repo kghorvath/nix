@@ -4,19 +4,33 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./steam.nix
       ];
      
    # Enable Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Blacklisting IPU6 modules because they currently break audio on the surface kernel
+  boot.blacklistedKernelModules = [ 
+    "ipu3_imgu"
+    "intel-ipu6"
+    "intel-ipu6-isys"
+  ]; 
+
+  # Disabling tmpfs so we don't run out of space on large builds
+  boot.tmp = {
+    useTmpfs = false;
+    #tmpOnTmpfsSize = "12G";
+    #cleanOnBoot = true;
+  };
+  
   boot.loader = {
-    ## Use the systemd-boot EFI boot loader.
+    # Disabling systemd-boot because it doesn't scale on hidpi screens
     # systemd-boot = {
       # enable = true;
       # consoleMode = "max";
     # };
     
-    # Use the GRUB boot loader
     grub = {
       efiSupport = true;
       useOSProber = false;
@@ -40,7 +54,7 @@
 
   # Enable zram
   zramSwap.enable = true;
-    
+
   # Set up networking
   networking.hostName = "hokie";
   networking.domain = "lan.kghorvath.com";
@@ -50,7 +64,9 @@
   time.timeZone = "America/New_York";
 
   # Set environment variables
-  environment.variables.EDITOR = "vim";
+  environment.variables = {
+    EDITOR = "vim";
+  };
 
   # User accounts
   users = {

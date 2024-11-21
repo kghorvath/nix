@@ -30,6 +30,11 @@
       fsType = "btrfs";
       options = [ "subvol=vmimage" ];
     };
+#  fileSystems."/tmp" =
+#    { device = "/dev/disk/by-uuid/2fa17bca-410e-484f-9d20-5e778eadd94b";
+#      fsType = "btrfs";
+#      options = [ "subvol=temp" ];
+#    };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/da3f1317-3ae7-4fd7-853c-1e39417fb88a";

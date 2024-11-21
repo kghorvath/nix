@@ -86,7 +86,7 @@ in
     dosbox-x
 
     # Media
-    calibre
+    #calibre
     ffmpeg-full
     gimp-with-plugins
     krita
@@ -94,11 +94,12 @@ in
     obs-studio
     pinta
     vlc
+    yt-dlp
 
     # Utilities
     alacarte
     distrobox
-    gnome.nautilus
+    nautilus
     jdk
     inputs.nixgl.packages.${pkgs.system}.nixGLIntel
     xfce.thunar

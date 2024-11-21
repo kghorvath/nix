@@ -16,9 +16,8 @@
   };
 
   inputs = {
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";  
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/feefc78";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,7 +54,7 @@
 	   ./nixos
 	   ./desktop
 	   (import ./overlays)
-	   #nixos-hardware.nixosModules.microsoft-surface-pro-intel
+	   nixos-hardware.nixosModules.microsoft-surface-pro-intel
 
 	   home-manager.nixosModules.home-manager {
 	     home-manager = {
