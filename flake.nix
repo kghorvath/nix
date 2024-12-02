@@ -25,7 +25,7 @@
 
     # Other programs
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland/12f9a0d";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlock.url = "github:hyprwm/hyprlock";

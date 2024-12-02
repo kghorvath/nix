@@ -5,6 +5,7 @@
     [
       ./hardware-configuration.nix
       ./steam.nix
+      ./virtualization.nix
       ];
      
    # Enable Flakes
@@ -25,7 +26,7 @@
   };
   
   boot.loader = {
-    # Disabling systemd-boot because it doesn't scale on hidpi screens
+    # Disabling systemd-boot because it doesn't scale well on hidpi screens
     # systemd-boot = {
       # enable = true;
       # consoleMode = "max";
@@ -35,7 +36,7 @@
       efiSupport = true;
       useOSProber = false;
       device = "nodev";
-    };
+     };
     
     # EFI settings
     efi = {
@@ -96,6 +97,7 @@
     fira-code
     fira-code-symbols
     font-awesome
+    hack-font
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
@@ -154,33 +156,6 @@
 
    # Enable polkit
   security.polkit.enable = true;
-
-  # Virtualization support
-  virtualisation = {
-    libvirtd = {
-      enable = true;
-      onBoot = "start";
-      qemu = {
-        package = pkgs.qemu_kvm;
-        runAsRoot = true;
-        swtpm.enable = true;
-        ovmf = {
-          enable = true;
-          packages = [(pkgs.OVMF.override {
-            secureBoot = true;
-            tpmSupport = true;
-          }).fd];
-        };
-      };
-    };
-
-    containers.enable = true;
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true;
-    };
- };
  
   system.stateVersion = "24.05";
 }

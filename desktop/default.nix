@@ -1,7 +1,6 @@
 {config, lib, pkgs, inputs, ... }: let
 
-  #pkgs-unstable = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-  
+    
 in {
 
   imports = [
@@ -14,7 +13,9 @@ in {
 
     # Desktop Managers
     desktopManager = {
-      xfce.enable = true;
+      #xfce.enable = true;
+      gnome.enable = true;
+      
     };
 
     displayManager = {
@@ -22,8 +23,14 @@ in {
     };
   };
 
+  # Desktop Managers
+  services.desktopManager = {
+    #plasma6.enable = true;
+  };
+
   # Display Managers
   services.displayManager = {
+    defaultSession = "hyprland";
     sddm = {
       enable = false;
       enableHidpi = true;
