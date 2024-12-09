@@ -104,6 +104,7 @@ in
     # Utilities
     alacarte
     distrobox
+    gnome-tweaks
     nautilus
     nwg-look
     jdk
@@ -112,10 +113,9 @@ in
     virt-manager
     
     # Hyprland
-    inputs.hypridle.packages.${pkgs.system}.hypridle
-    inputs.hyprlock.packages.${pkgs.system}.hyprlock
+    hypridle
+    hyprlock
     hyprlauncher
-    hyprpanel
     hyprpaper
     hyprpicker
     hyprshot

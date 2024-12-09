@@ -61,8 +61,8 @@
     },
     "custom/icon3": {
 	"format": "",
-	"tooltip": "Firefox",
-	"on-click": "firefox"
+	"tooltip": "Vivaldi",
+	"on-click": "vivaldi"
     },
     "custom/icon4": {
 	"format": "",

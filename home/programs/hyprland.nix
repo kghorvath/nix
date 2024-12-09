@@ -4,11 +4,10 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     extraConfig = builtins.readFile ../dotfiles/hyprland/hyprland.conf;
     plugins = [
       #pkgs.hyprlandPlugins.hyprwinwrap
-      inputs.hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
+#      inputs.hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
     ];  
   };
   services.hypridle = {
