@@ -4,24 +4,39 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./steam.nix
+      ./virtualization.nix
       ];
      
    # Enable Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Blacklisting IPU6 modules because they currently break audio on the surface kernel
+  boot.blacklistedKernelModules = [ 
+    "ipu3_imgu"
+    "intel-ipu6"
+    "intel-ipu6-isys"
+  ]; 
+
+  # Disabling tmpfs so we don't run out of space on large builds
+  boot.tmp = {
+    useTmpfs = false;
+    #tmpOnTmpfsSize = "12G";
+    #cleanOnBoot = true;
+  };
+  
   boot.loader = {
-    ## Use the systemd-boot EFI boot loader.
+    # Disabling systemd-boot because it doesn't scale well on hidpi screens
     # systemd-boot = {
       # enable = true;
       # consoleMode = "max";
     # };
     
-    # Use the GRUB boot loader
     grub = {
       efiSupport = true;
       useOSProber = false;
       device = "nodev";
-    };
+     };
     
     # EFI settings
     efi = {
@@ -40,7 +55,7 @@
 
   # Enable zram
   zramSwap.enable = true;
-    
+
   # Set up networking
   networking.hostName = "hokie";
   networking.domain = "lan.kghorvath.com";
@@ -50,7 +65,9 @@
   time.timeZone = "America/New_York";
 
   # Set environment variables
-  environment.variables.EDITOR = "vim";
+  environment.variables = {
+    EDITOR = "vim";
+  };
 
   # User accounts
   users = {
@@ -68,18 +85,19 @@
   nixpkgs.config.allowUnfree = true;
 
   # System packages
-  environment.systemPackages = with pkgs; [ vim nfs-utils lxqt.lxqt-policykit ];
+  environment.systemPackages = with pkgs; [ vim nfs-utils lxqt.lxqt-policykit spice-gtk ];
 
   # Font packages
   fonts.packages = with pkgs; [
     cascadia-code
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     liberation_ttf
     fira-code
     fira-code-symbols
     font-awesome
+    hack-font
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
@@ -138,34 +156,5 @@
 
    # Enable polkit
   security.polkit.enable = true;
-
-  # Virtualization support
-  virtualisation = {
-    libvirtd = {
-      enable = true;
-      onBoot = "start";
-      qemu = {
-        package = pkgs.qemu_kvm;
-        runAsRoot = true;
-        swtpm.enable = true;
-        ovmf = {
-          enable = true;
-          packages = [(pkgs.OVMF.override {
-            secureBoot = true;
-            tpmSupport = true;
-          }).fd];
-        };
-      };
-    };
-
-    containers.enable = true;
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true;
-    };
- };
- 
   system.stateVersion = "24.05";
 }
-

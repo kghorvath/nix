@@ -23,9 +23,9 @@
 	},
 
 	"clock": {
-		 "format": " {0:%a %b %d}   {0:%I:%M %p}",
+		 "format": " {0:%a %b %d}   {0:%I:%M:%S %p}",
 		 "tooltip-format": "<span color='#35b9ab'><big>{:%Y %B}</big></span>\n<span color='#35b9ab'><tt><small>{calendar}</small></tt></span>",
-		 "interval": 10
+		 "interval": 1
 	},
 
 	"backlight": {
