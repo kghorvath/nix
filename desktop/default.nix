@@ -29,7 +29,7 @@ in {
 
   # Display Managers
   services.displayManager = {
-    defaultSession = "hyprland";
+    #defaultSession = "hyprland";
     sddm = {
       enable = false;
       enableHidpi = true;

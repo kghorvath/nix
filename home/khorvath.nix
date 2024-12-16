@@ -11,9 +11,10 @@ in
 {
 
   imports = [
+    ./programs/alacritty.nix
     ./programs/hyprland.nix
     ./programs/firefox.nix
-    ./programs/wezterm.nix
+    ./programs/kitty.nix
   ];
 
   home.enableNixpkgsReleaseCheck = false;
@@ -107,8 +108,10 @@ in
     gnome-tweaks
     nautilus
     nwg-look
+    ptyxis
     jdk
     inputs.nixgl.packages.${pkgs.system}.nixGLIntel
+    transmission_4-gtk
     xfce.thunar
     virt-manager
     
@@ -120,7 +123,6 @@ in
     hyprpicker
     hyprshot
     hyprwall
-    kitty
     waybar
     wofi
     inputs.swww.packages.${pkgs.system}.swww

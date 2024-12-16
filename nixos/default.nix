@@ -85,7 +85,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # System packages
-  environment.systemPackages = with pkgs; [ vim nfs-utils lxqt.lxqt-policykit ];
+  environment.systemPackages = with pkgs; [ vim nfs-utils lxqt.lxqt-policykit spice-gtk ];
 
   # Font packages
   fonts.packages = with pkgs; [
@@ -156,6 +156,5 @@
 
    # Enable polkit
   security.polkit.enable = true;
- 
   system.stateVersion = "24.05";
 }

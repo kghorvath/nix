@@ -19,6 +19,7 @@
         };
       };
     };
+    spiceUSBRedirection.enable = true;
 
     containers.enable = true;
     podman = {
