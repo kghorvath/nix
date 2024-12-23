@@ -17,7 +17,7 @@ in
     ./programs/kitty.nix
   ];
 
-  home.enableNixpkgsReleaseCheck = false;
+  #home.enableNixpkgsReleaseCheck = false;
 
   home.username = "khorvath";
   home.homeDirectory = "/home/khorvath";
@@ -110,7 +110,7 @@ in
     nwg-look
     ptyxis
     jdk
-    inputs.nixgl.packages.${pkgs.system}.nixGLIntel
+    #inputs.nixgl.packages.${pkgs.system}.nixGLIntel
     transmission_4-gtk
     xfce.thunar
     virt-manager
@@ -125,7 +125,7 @@ in
     hyprwall
     waybar
     wofi
-    inputs.swww.packages.${pkgs.system}.swww
+    #inputs.swww.packages.${pkgs.system}.swww
 
   ];
   
