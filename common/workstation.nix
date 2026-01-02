@@ -3,6 +3,7 @@
 {
 
   imports = [
+    ./flatpak.nix
     ./packages/common.nix
     ./packages/games.nix
     ./packages/internet.nix
