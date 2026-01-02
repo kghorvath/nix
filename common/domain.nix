@@ -34,7 +34,9 @@
 
   services = {
     resolved.enable = true;
+    realmd.enable = true;
     sssd = {
+    enable = true;
       config = ''
         [sssd]
         domains = dir.sathani.com 
@@ -53,7 +55,7 @@
         realmd_tags = manages-system joined-with-samba
         id_provider = ad
         fallback_homedir = /home/%u
-        ad_domain = your_domain_lowercase
+        ad_domain = dir.sathani.com
         use_fully_qualified_names = false
         ldap_id_mapping = false
         auth_provider = ad
@@ -61,6 +63,7 @@
         chpass_provider = ad
         ad_gpo_access_control = permissive
         enumerate = true
+        override_shell = /run/current-system/sw/bin/fish
       '';
     };
   };

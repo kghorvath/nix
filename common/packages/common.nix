@@ -8,7 +8,7 @@
   ## Common system packages
   environment.systemPackages = with pkgs; [
     bchunk
-    emacs
+    git
     htop
     ipmitool
     jq
@@ -17,9 +17,10 @@
     nfs-utils
     progress
     stow
-    wget
+    terminus_font
     unzip
     vim
+    wget
     xmlstarlet
   ];
 

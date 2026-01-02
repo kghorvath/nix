@@ -24,7 +24,7 @@
   networking.networkmanager.enable = true;
 
   ## Environment Variables
-  environment.varialbes = {
+  environment.variables = {
     EDITOR = "vim";
   };
 

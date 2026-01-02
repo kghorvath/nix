@@ -23,6 +23,7 @@
   networking = {
     hostName = "hokie";
     domain = "dir.sathani.com";
+    search = [ "dir.sathani.com" ];
   };
 
   ## Allow domain users to manage networks

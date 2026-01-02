@@ -2,6 +2,15 @@
 
 {
 
+  imports = [
+    ./packages/common.nix
+    ./packages/games.nix
+    ./packages/internet.nix
+    ./packages/multimedia.nix
+    ./packages/productivity.nix
+    ./packages/utilities.nix
+  ];
+
   ## Workstation specific services
   services = {
     avahi = {
@@ -31,11 +40,14 @@
   ## Workstation security settings
   security = {
     sudo = {
+      enable = true;
       execWheelOnly = true;
       wheelNeedsPassword = true;
     };
 
     polkit.enable = true;
   };
+  users.groups.wheel.members = ["kamin"];
+
 
 }

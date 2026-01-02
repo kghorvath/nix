@@ -4,7 +4,7 @@
 
   imports = [
     ./common/default.nix
-    ./common/greetd.nix
+    ./common/gdm.nix
   ];
 
   programs = {
@@ -19,9 +19,12 @@
   security.pam.services.hyprlock = {};
 
   environment.systemPackages = with pkgs; [
+    brightnessctl
     hyprlock
     hypridle
     hyprpaper
     hyprpolkitagent
+    waybar
+    wofi
   ];
 }

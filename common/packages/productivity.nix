@@ -3,6 +3,7 @@
 {
 
   environment.systemPackages = with pkgs; [
+    emacs-pgtk
     hugo
     libreoffice
     octaveFull
