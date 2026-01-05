@@ -7,7 +7,9 @@
     distrobox
     ghostty
     jdk
+    opencloud-desktop
     transmission_4-gtk
+    usbmuxd
     virt-manager
   ];
 

@@ -15,6 +15,7 @@
     neofetch
     neovim
     nfs-utils
+    pciutils
     progress
     stow
     terminus_font
