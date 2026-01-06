@@ -2,6 +2,10 @@
 
 {
 
+  imports = [
+    ./drivers/power.nix
+  ];
+
   ## Enable libinput
   services.libinput.enable = true;
 

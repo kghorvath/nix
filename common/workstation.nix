@@ -10,7 +10,7 @@
     ./packages/multimedia.nix
     ./packages/productivity.nix
     ./packages/utilities.nix
-    ./packages/drivers/print.nix
+    ./drivers/print.nix
   ];
 
   ## Workstation specific services

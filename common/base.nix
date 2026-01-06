@@ -5,7 +5,6 @@
   imports = [
     ./fonts.nix
     ./packages/common.nix
-    ./print.nix
     ./programs.nix
     ./services.nix
     ./virtualization.nix

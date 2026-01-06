@@ -17,6 +17,7 @@
 	  ./common/laptop.nix
 	  ./common/domain.nix
 	  ./common/desktops/hyprland.nix
+	  ./common/desktops/niri.nix
 	  ./common/drivers/intel.nix
 	  ./hosts/hokie/hokie.nix
 	];
