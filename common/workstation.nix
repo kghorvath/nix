@@ -5,6 +5,7 @@
   imports = [
     ./flatpak.nix
     ./packages/common.nix
+    ./packages/emulators.nix
     ./packages/games.nix
     ./packages/internet.nix
     ./packages/multimedia.nix
@@ -37,6 +38,12 @@
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "client";
+  };
+
+  ## Enable AppImage support
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
   };
 
   ## Workstation security settings

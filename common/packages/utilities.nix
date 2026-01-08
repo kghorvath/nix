@@ -7,9 +7,10 @@
     distrobox
     ghostty
     jdk
+    ifuse
+    libimobiledevice
     opencloud-desktop
     transmission_4-gtk
-    usbmuxd
     virt-manager
   ];
 

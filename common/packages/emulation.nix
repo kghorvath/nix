@@ -3,7 +3,9 @@
 {
 
   environment.systemPackages = with pkgs; [
-
+    _86Box-with-roms
+    dosbox-staging
+    dosbox-x
   ];
 
 }

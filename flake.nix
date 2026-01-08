@@ -3,9 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixgl.url = "github:nix-community/nixGL";
   };
 
-  outputs = { self, nixpkgs, ... }: {
+  outputs = { self, nixpkgs, nixgl, ... }: {
     nixosConfigurations = {
 
       ## Main laptop configuration
@@ -20,6 +21,7 @@
 	  ./common/desktops/niri.nix
 	  ./common/drivers/intel.nix
 	  ./hosts/hokie/hokie.nix
+
 	];
       };
 

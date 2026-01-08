@@ -28,5 +28,5 @@
 
   ## Allow domain users to manage networks
   users.groups.networkmanager.members = ["kamin"];
-
+  users.groups.libvirtd.members = ["kamin"];
 }
